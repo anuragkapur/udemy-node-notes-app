@@ -2,7 +2,30 @@ const yargs = require('yargs');
 
 const notes = require('./notes.js');
 
-const argv = yargs.argv;
+const titleCommandOptions = {
+  describe: 'title of note',
+  demand: true,
+  alias: 't'
+};
+
+const argv = yargs
+  .command('add', 'Add a new note', {
+    title: titleCommandOptions,
+    body: {
+      describe: 'body of note',
+      demand: true,
+      alias: 'b'
+    }
+  })
+  .command('list', 'list all notes')
+  .command('read', 'read a note', {
+    title: titleCommandOptions
+  })
+  .command('remove', 'remove a note', {
+    title: titleCommandOptions
+  })
+  .help()
+  .argv;
 const command = argv._[0];
 
 if (command === 'add') {
@@ -31,7 +54,7 @@ if (command === 'add') {
   const msg = countOfNotesRemoved === 0 ? 'no notes removed' : `${countOfNotesRemoved} note(s) removed successfully`;
   console.log(msg)
 
-}else {
+} else {
 
   console.log('command not recognised');
 
