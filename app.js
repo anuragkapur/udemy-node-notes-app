@@ -1,5 +1,3 @@
-console.log('Starting app.js');
-
 const yargs = require('yargs');
 
 const notes = require('./notes.js');
@@ -16,7 +14,9 @@ if (command === 'add') {
 
 } else if (command === 'list') {
 
-  notes.listNotes();
+  const allNotes = notes.listNotes();
+  console.log(`printing ${allNotes.length} note(s)`);
+  allNotes.forEach(note => notes.logNote(note));
 
 } else if (command === 'read') {
 

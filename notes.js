@@ -34,6 +34,7 @@ const addNote = (title, body) => {
 
 const listNotes = () => {
   console.log('listing all notes');
+  return fetchAllNotes();
 };
 
 const readNote = (title) => {
